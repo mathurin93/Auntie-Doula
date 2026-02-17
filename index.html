@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Auntie Doula | Overnight Postpartum Care</title>
+    <title>Auntie Doula | Postpartum Care</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link
         href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap"
@@ -127,6 +127,11 @@
             width: auto;
             object-fit: contain;
         }
+
+        /* Hidden section for "Page" behavior */
+        .page-hidden {
+            display: none;
+        }
     </style>
 </head>
 
@@ -135,11 +140,8 @@
     <!-- Loader -->
     <div id="loader">
         <div class="text-center">
-            <!-- Replace the src below with your logo -->
-            <img src="Image/logo.jpeg" alt="Auntie Doula Logo" class="h-20 w-auto mx-auto mb-4 animate-pulse"
-                onerror="this.style.display='none'; document.getElementById('loader-fallback').style.display='block'">
             <div id="loader-fallback"
-                class="hidden w-30 h-30 border-4 border-brand-pink border-t-transparent rounded-full animate-spin mx-auto mb-4">
+                class="w-12 h-12 border-4 border-brand-pink border-t-transparent rounded-full animate-spin mx-auto mb-4">
             </div>
             <p class="font-serif italic text-brand-dark">Auntie Doula</p>
         </div>
@@ -149,13 +151,12 @@
     <nav class="fixed w-full z-50 bg-[#FDFBF7]/90 backdrop-blur-md border-b border-[#EAC7C7]/30">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between h-20 items-center">
-                <a href="#home" class="flex items-center gap-3 group">
-                    <!-- Logo Implementation -->
+                <a href="javascript:void(0)" onclick="showPage('main')" class="flex items-center gap-3 group">
                     <img src="Image/Logo.png" alt="Auntie Doula Logo"
                         class="logo-img transition-transform group-hover:scale-105"
                         onerror="this.style.display='none'; document.getElementById('nav-icon-fallback').style.display='flex'">
                     <div id="nav-icon-fallback"
-                        class="hidden w-20 h-20 rounded-full bg-brand-pink items-center justify-center text-white">
+                        class="hidden w-12 h-12 rounded-full bg-brand-pink items-center justify-center text-white">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
                             fill="currentColor">
                             <path
@@ -167,23 +168,18 @@
                 </a>
 
                 <!-- Desktop Nav -->
-                <div class="hidden md:flex space-x-8 text-sm font-medium uppercase tracking-widest text-[#6D6D6D]">
-                    <a href="#services" class="hover:text-brand-pink transition-colors py-2 relative group">
-                        Services
-                        <span
-                            class="absolute bottom-0 left-0 w-0 h-0.5 bg-brand-pink transition-all group-hover:w-full"></span>
-                    </a>
-                    <a href="#pricing" class="hover:text-brand-pink transition-colors py-2 relative group">
-                        Pricing
-                        <span
-                            class="absolute bottom-0 left-0 w-0 h-0.5 bg-brand-pink transition-all group-hover:w-full"></span>
-                    </a>
-                    <a href="#process" class="hover:text-brand-pink transition-colors py-2 relative group">
-                        Process
-                        <span
-                            class="absolute bottom-0 left-0 w-0 h-0.5 bg-brand-pink transition-all group-hover:w-full"></span>
-                    </a>
-                    <a href="#contact"
+                <div
+                    class="hidden md:flex space-x-8 text-sm font-medium uppercase tracking-widest text-[#6D6D6D] items-center">
+                    <a href="javascript:void(0)"
+                        onclick="showPage('main'); setTimeout(() => document.getElementById('services').scrollIntoView(), 100)"
+                        class="hover:text-brand-pink transition-colors py-2 relative group">Services</a>
+                    <a href="javascript:void(0)"
+                        onclick="showPage('main'); setTimeout(() => document.getElementById('pricing').scrollIntoView(), 100)"
+                        class="hover:text-brand-pink transition-colors py-2 relative group">Pricing</a>
+                    <a href="javascript:void(0)" onclick="showPage('team')"
+                        class="hover:text-brand-pink transition-colors py-2 relative group">The Team</a>
+                    <a href="javascript:void(0)"
+                        onclick="showPage('main'); setTimeout(() => document.getElementById('contact').scrollIntoView(), 100)"
                         class="bg-brand-pink text-white px-6 py-2 rounded-full hover:bg-[#D9B6B6] transition-all hover:shadow-lg active:scale-95">Inquire</a>
                 </div>
 
@@ -210,358 +206,347 @@
 
         <!-- Mobile Menu -->
         <div id="mobile-menu" class="md:hidden bg-[#FDFBF7] px-6 flex flex-col space-y-4">
-            <a href="#services" class="text-xl py-3 border-b border-brand-pink/10 mobile-link">Services</a>
-            <a href="#pricing" class="text-xl py-3 border-b border-brand-pink/10 mobile-link">Pricing</a>
-            <a href="#process" class="text-xl py-3 border-b border-brand-pink/10 mobile-link">Process</a>
-            <a href="#contact"
-                class="bg-brand-pink text-white py-4 mt-2 rounded-2xl text-center mobile-link font-bold">Contact Us</a>
+            <a href="javascript:void(0)" onclick="showPage('main'); closeMobileMenu();"
+                class="text-xl py-3 border-b border-brand-pink/10">Home</a>
+            <a href="javascript:void(0)" onclick="showPage('team'); closeMobileMenu();"
+                class="text-xl py-3 border-b border-brand-pink/10">The Team</a>
+            <a href="javascript:void(0)"
+                onclick="showPage('main'); closeMobileMenu(); setTimeout(() => document.getElementById('pricing').scrollIntoView(), 300)"
+                class="text-xl py-3 border-b border-brand-pink/10">Pricing</a>
+            <a href="javascript:void(0)"
+                onclick="showPage('main'); closeMobileMenu(); setTimeout(() => document.getElementById('contact').scrollIntoView(), 300)"
+                class="bg-brand-pink text-white py-4 mt-2 rounded-2xl text-center font-bold">Inquire</a>
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section id="home" class="pt-32 pb-20 md:pt-48 md:pb-40 px-4 overflow-hidden">
-        <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 items-center">
-            <div class="space-y-8 text-center md:text-left reveal-left">
-                <div
-                    class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#EAC7C7]/20 text-[#B88686] font-medium text-sm">
-                    <svg class="animate-pulse" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                        stroke-linejoin="round">
-                        <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z" />
-                    </svg>
-                    Support for your Fourth Trimester
-                </div>
-                <h1 class="text-5xl md:text-7xl font-serif text-brand-dark leading-tight">
-                    Rest deeply while we care for your <span class="italic text-[#B88686]">newest love.</span>
-                </h1>
-                <p class="text-xl text-gray-600 max-w-lg mx-auto md:mx-0 leading-relaxed">
-                    Professional, compassionate overnight postpartum doula care so you can recover, heal, and bond with
-                    peace of mind.
-                </p>
-                <div class="flex flex-col sm:flex-row gap-4 justify-center md:justify-start pt-4">
-                    <a href="#contact"
-                        class="px-8 py-4 bg-brand-pink text-white rounded-full text-lg font-medium shadow-lg shadow-[#EAC7C7]/30 hover:shadow-xl hover:-translate-y-1 transition-all flex items-center justify-center gap-2">
-                        Book Your Care
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M5 12h14" />
-                            <path d="m12 5 7 7-7 7" />
-                        </svg>
-                    </a>
-                    <a href="#services"
-                        class="px-8 py-4 bg-white border border-brand-pink text-[#B88686] rounded-full text-lg font-medium hover:bg-brand-pink hover:text-white transition-all text-center">
-                        Learn More
-                    </a>
-                </div>
-            </div>
-            <div class="relative reveal-right">
-                <div
-                    class="aspect-square rounded-3xl overflow-hidden bg-[#F5E6E6] flex items-center justify-center p-4 md:p-12">
-                    <img src="Image/charlesdeluvio-2vfwTakDTIo-unsplash.jpg"
-                        alt="Newborn sleeping"
-                        class="absolute inset-0 w-full h-full object-cover opacity-80 transition-transform duration-700 hover:scale-105">
+    <!-- MAIN PAGE CONTENT -->
+    <main id="main-content">
+        <!-- Hero Section -->
+        <section id="home" class="pt-32 pb-20 md:pt-48 md:pb-40 px-4 overflow-hidden">
+            <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 items-center">
+                <div class="space-y-8 text-center md:text-left reveal-left">
                     <div
-                        class="relative z-10 bg-white/90 p-6 md:p-8 rounded-2xl shadow-2xl backdrop-blur-sm max-w-xs text-center floating">
-                        <img src="IMG_20260206_104156.png" alt="Auntie Doula Icon" class="h-12 w-auto mx-auto mb-4"
-                            onerror="this.style.display='none'">
-                        <p class="font-serif italic text-lg md:text-xl text-brand-dark">"Experienced newborn care
-                            throughout the night."</p>
-                    </div>
-                </div>
-                <div
-                    class="absolute -z-10 top-10 -right-10 w-64 h-64 bg-[#EAC7C7]/30 rounded-full blur-3xl opacity-50 animate-pulse">
-                </div>
-                <div
-                    class="absolute -z-10 -bottom-10 -left-10 w-64 h-64 bg-[#EAC7C7]/20 rounded-full blur-3xl opacity-50">
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Services Section -->
-    <section id="services" class="py-24 bg-white">
-        <div class="max-w-7xl mx-auto px-4">
-            <div class="text-center max-w-3xl mx-auto mb-16 reveal">
-                <h2 class="text-3xl md:text-4xl font-serif text-brand-dark mb-6">Overnight Postpartum Services</h2>
-                <p class="text-lg text-gray-600">The early weeks after birth are a time of healing, adjustment, and
-                    bonding. We handle the nights so you can handle the days.</p>
-            </div>
-
-            <div class="grid md:grid-cols-2 gap-12 items-start">
-                <div class="space-y-4 reveal-left">
-                    <h3 class="text-2xl font-serif text-brand-dark mb-8">What Overnight Care Includes</h3>
-                    <div id="inclusions-list" class="grid gap-4">
-                        <div
-                            class="inclusion-item flex gap-4 items-start bg-brand-cream p-5 rounded-2xl border border-brand-pink/5 hover:border-brand-pink/30 hover:shadow-md transition-all">
-                            <div class="mt-1 flex-shrink-0 text-brand-pink">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24"
-                                    fill="currentColor" stroke="white" stroke-width="2" stroke-linecap="round"
-                                    stroke-linejoin="round">
-                                    <circle cx="12" cy="12" r="10" />
-                                    <path d="m9 12 2 2 4-4" />
-                                </svg>
-                            </div>
-                            <p class="text-gray-700 font-medium">Complete newborn care throughout the night</p>
-                        </div>
-                        <div
-                            class="inclusion-item flex gap-4 items-start bg-brand-cream p-5 rounded-2xl border border-brand-pink/5 hover:border-brand-pink/30 hover:shadow-md transition-all">
-                            <div class="mt-1 flex-shrink-0 text-brand-pink">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24"
-                                    fill="currentColor" stroke="white" stroke-width="2" stroke-linecap="round"
-                                    stroke-linejoin="round">
-                                    <circle cx="12" cy="12" r="10" />
-                                    <path d="m9 12 2 2 4-4" />
-                                </svg>
-                            </div>
-                            <p class="text-gray-700 font-medium">Feeding support (breastfeeding, bottle, or expressed
-                                milk)</p>
-                        </div>
-                        <div
-                            class="inclusion-item flex gap-4 items-start bg-brand-cream p-5 rounded-2xl border border-brand-pink/5 hover:border-brand-pink/30 hover:shadow-md transition-all">
-                            <div class="mt-1 flex-shrink-0 text-brand-pink">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24"
-                                    fill="currentColor" stroke="white" stroke-width="2" stroke-linecap="round"
-                                    stroke-linejoin="round">
-                                    <circle cx="12" cy="12" r="10" />
-                                    <path d="m9 12 2 2 4-4" />
-                                </svg>
-                            </div>
-                            <p class="text-gray-700 font-medium">Diapering, soothing, and comfort measures</p>
-                        </div>
-                        <div
-                            class="inclusion-item flex gap-4 items-start bg-brand-cream p-5 rounded-2xl border border-brand-pink/5 hover:border-brand-pink/30 hover:shadow-md transition-all">
-                            <div class="mt-1 flex-shrink-0 text-brand-pink">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24"
-                                    fill="currentColor" stroke="white" stroke-width="2" stroke-linecap="round"
-                                    stroke-linejoin="round">
-                                    <circle cx="12" cy="12" r="10" />
-                                    <path d="m9 12 2 2 4-4" />
-                                </svg>
-                            </div>
-                            <p class="text-gray-700 font-medium">Support for healthy sleep routines</p>
-                        </div>
-                        <div
-                            class="inclusion-item flex gap-4 items-start bg-brand-cream p-5 rounded-2xl border border-brand-pink/5 hover:border-brand-pink/30 hover:shadow-md transition-all">
-                            <div class="mt-1 flex-shrink-0 text-brand-pink">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24"
-                                    fill="currentColor" stroke="white" stroke-width="2" stroke-linecap="round"
-                                    stroke-linejoin="round">
-                                    <circle cx="12" cy="12" r="10" />
-                                    <path d="m9 12 2 2 4-4" />
-                                </svg>
-                            </div>
-                            <p class="text-gray-700 font-medium">Light newborn-related tasks (nursery tidying, pump
-                                parts)</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div
-                    class="bg-brand-cream p-8 md:p-12 rounded-[2.5rem] border border-brand-pink/30 space-y-8 reveal-right shadow-sm">
-                    <div class="flex items-center gap-4 text-[#B88686]">
-                        <svg class="animate-bounce" xmlns="http://www.w3.org/2000/svg" width="32" height="32"
+                        class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#EAC7C7]/20 text-[#B88686] font-medium text-sm">
+                        <svg class="animate-pulse" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                             viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                             stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M9 12h.01" />
-                            <path d="M15 12h.01" />
-                            <path d="M10 16c.5.3 1.2.5 2 .5s1.5-.2 2-.5" />
-                            <path
-                                d="M19 6.3a9 9 0 0 1 1.8 3.9 2 2 0 0 1 0 3.6 9 9 0 0 1-17.6 0 2 2 0 0 1 0-3.6A9 9 0 0 1 12 3c2 0 3.5 1.1 3.5 2.5s-.9 2.5-2 2.5c-.8 0-1.5-.4-1.5-1" />
+                            <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z" />
                         </svg>
-                        <h3 class="text-2xl font-serif">Care for Singles & Twins</h3>
+                        Support for your Fourth Trimester
                     </div>
-                    <p class="text-lg text-gray-600 leading-relaxed italic">
-                        "Our goal is to ensure continuity of care and consistent support. We specialize in
-                        evidence-based education and emotional reassurance for growing families."
+                    <h1 class="text-5xl md:text-7xl font-serif text-brand-dark leading-tight">
+                        Rest deeply while we care for your <span class="italic text-[#B88686]">newest love.</span>
+                    </h1>
+                    <p class="text-xl text-gray-600 max-w-lg mx-auto md:mx-0 leading-relaxed">
+                        Professional, compassionate postpartum doula care so you can recover, heal, and bond with peace
+                        of mind.
                     </p>
-                    <div class="pt-6 border-t border-brand-pink/20">
-                        <p class="text-sm font-bold uppercase tracking-widest text-[#B88686] mb-3">Commitment</p>
-                        <p class="text-gray-700">A four-week minimum commitment is required to ensure the highest
-                            quality of care and meaningful adjustment for your family.</p>
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center md:justify-start pt-4">
+                        <a href="#contact"
+                            class="px-8 py-4 bg-brand-pink text-white rounded-full text-lg font-medium shadow-lg shadow-[#EAC7C7]/30 hover:shadow-xl hover:-translate-y-1 transition-all flex items-center justify-center gap-2">Book
+                            Your Care</a>
+                        <a href="javascript:void(0)" onclick="showPage('team')"
+                            class="px-8 py-4 bg-white border border-brand-pink text-[#B88686] rounded-full text-lg font-medium hover:bg-brand-pink hover:text-white transition-all text-center">Meet
+                            the Team</a>
+                    </div>
+                </div>
+                <div class="relative reveal-right">
+                    <div class="aspect-square rounded-3xl overflow-hidden bg-[#F5E6E6] relative">
+                        <img src="https://images.unsplash.com/photo-1555252333-9f8e92e65df9?auto=format&fit=crop&q=80&w=800"
+                            alt="Newborn sleeping" class="absolute inset-0 w-full h-full object-cover opacity-90">
+                        <div class="absolute inset-0 bg-black/10"></div>
+                        <div
+                            class="absolute bottom-8 left-8 right-8 z-10 bg-white/90 p-6 rounded-2xl shadow-2xl backdrop-blur-sm text-center floating">
+                            <p class="font-serif italic text-lg text-brand-dark">"Experienced newborn care day or
+                                night."</p>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Pricing Section -->
-    <section id="pricing" class="py-24 px-4 bg-brand-cream">
+        <!-- Services Section -->
+        <section id="services" class="py-24 bg-white">
+            <div class="max-w-7xl mx-auto px-4">
+                <div class="text-center max-w-3xl mx-auto mb-16 reveal">
+                    <h2 class="text-3xl md:text-4xl font-serif text-brand-dark mb-6">Expert Postpartum Services</h2>
+                    <p class="text-lg text-gray-600">The early weeks after birth are a time of healing and adjustment.
+                        Whether you need help during the quiet nights or the busy days, we are here.</p>
+                </div>
+                <div class="grid md:grid-cols-2 gap-12">
+                    <div class="bg-brand-cream p-10 rounded-3xl border border-brand-pink/20 reveal-left">
+                        <h3 class="text-2xl font-serif mb-6 text-brand-dark">Overnight Support</h3>
+                        <p class="text-gray-600 mb-6">Our specialty. We handle feedings, soothing, and diapering while
+                            you get the restorative sleep necessary for your recovery.</p>
+                        <ul class="space-y-3">
+                            <li class="flex gap-3 text-sm font-medium text-gray-700">
+                                <span class="text-brand-pink">✓</span> Full overnight monitoring
+                            </li>
+                            <li class="flex gap-3 text-sm font-medium text-gray-700">
+                                <span class="text-brand-pink">✓</span> Feeding assistance
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="bg-brand-cream p-10 rounded-3xl border border-brand-pink/20 reveal-right">
+                        <h3 class="text-2xl font-serif mb-6 text-brand-dark">Daytime Care</h3>
+                        <p class="text-gray-600 mb-6">Transitioning into parenthood doesn't stop when the sun comes up.
+                            We offer hands-on help during the day to support your healing.</p>
+                        <ul class="space-y-3">
+                            <li class="flex gap-3 text-sm font-medium text-gray-700">
+                                <span class="text-brand-pink">✓</span> Newborn care & education
+                            </li>
+                            <li class="flex gap-3 text-sm font-medium text-gray-700">
+                                <span class="text-brand-pink">✓</span> Sibling & household harmony
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Pricing Section -->
+        <section id="pricing" class="py-24 px-4 bg-brand-cream">
+            <div class="max-w-7xl mx-auto">
+                <div class="text-center mb-16 reveal">
+                    <h2 class="text-3xl md:text-4xl font-serif text-brand-dark mb-4">Investment</h2>
+                    <p class="text-[#6D6D6D]">Transparent pricing for your peace of mind. Select your care type to view
+                        preferred rates.</p>
+                </div>
+
+                <!-- Tabs for Day/Night toggle -->
+                <div class="flex justify-center mb-12">
+                    <div class="inline-flex p-1 bg-white rounded-full shadow-inner border border-brand-pink/20">
+                        <button onclick="togglePricing('night')" id="night-btn"
+                            class="px-8 py-2 rounded-full font-bold transition-all bg-brand-pink text-white">Overnight</button>
+                        <button onclick="togglePricing('day')" id="day-btn"
+                            class="px-8 py-2 rounded-full font-bold transition-all text-gray-400">Daytime Care</button>
+                    </div>
+                </div>
+
+                <div class="grid md:grid-cols-3 gap-8">
+                    <!-- Hourly Card -->
+                    <div class="bg-white p-8 rounded-3xl shadow-sm border border-brand-pink/20 flex flex-col reveal">
+                        <div class="mb-6">
+                            <h3 class="text-xl font-serif mb-2">Hourly Rates</h3>
+                            <p class="text-sm text-gray-500 italic">For flexible support needs</p>
+                        </div>
+                        <div class="space-y-4 flex-grow">
+                            <div class="flex justify-between items-center py-4 border-b border-gray-50">
+                                <span class="text-gray-600">Single Baby</span>
+                                <span class="text-2xl font-bold text-brand-dark" id="price-single-hr">$45<span
+                                        class="text-sm font-normal text-gray-400">/hr</span></span>
+                            </div>
+                            <div class="flex justify-between items-center py-4">
+                                <span class="text-gray-600">Twins</span>
+                                <span class="text-2xl font-bold text-brand-dark" id="price-twins-hr">$55<span
+                                        class="text-sm font-normal text-gray-400">/hr</span></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Package 1 -->
+                    <div class="bg-white p-8 rounded-3xl shadow-sm border border-brand-pink/20 reveal">
+                        <div class="mb-6">
+                            <h3 class="text-xl font-serif mb-2">3 Days/Nights / Week</h3>
+                            <p class="text-sm italic text-gray-500">Weekly package rate</p>
+                        </div>
+                        <div class="space-y-4">
+                            <div class="flex justify-between items-center py-4 border-b border-gray-50">
+                                <span>Single Baby</span>
+                                <span class="text-2xl font-bold text-brand-dark" id="price-single-p1">$1,350</span>
+                            </div>
+                            <div class="flex justify-between items-center py-4">
+                                <span>Twins</span>
+                                <span class="text-2xl font-bold text-brand-dark" id="price-twins-p1">$1,815</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Package 2 - Featured -->
+                    <div
+                        class="p-8 rounded-[2rem] shadow-xl border bg-brand-pink text-white border-transparent reveal scale-105">
+                        <div class="flex justify-between items-start mb-6">
+                            <div>
+                                <h3 class="text-xl font-serif mb-2">4 Days/Nights / Week</h3>
+                                <p class="text-sm italic text-white/80">Weekly package rate</p>
+                            </div>
+                            <span
+                                class="bg-white/20 text-[10px] uppercase tracking-widest px-2 py-1 rounded font-bold">Best
+                                Value</span>
+                        </div>
+                        <div class="space-y-4">
+                            <div class="flex justify-between items-center py-4 border-b border-white/20">
+                                <span>Single Baby</span>
+                                <span class="text-3xl font-bold" id="price-single-p2">$1,760</span>
+                            </div>
+                            <div class="flex justify-between items-center py-4">
+                                <span>Twins</span>
+                                <span class="text-3xl font-bold" id="price-twins-p2">$2,376</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="py-24 px-4 bg-brand-cream">
+            <div class="max-w-7xl mx-auto reveal">
+                <div class="bg-white rounded-[3.5rem] shadow-2xl overflow-hidden border border-brand-pink/10">
+                    <div class="grid md:grid-cols-2">
+                        <div class="p-10 md:p-20 bg-brand-pink text-white space-y-10 relative overflow-hidden">
+                            <h2 class="text-4xl md:text-5xl font-serif text-brand-dark">Inquire about <br>your care</h2>
+                            <p class="text-lg text-brand-dark/80">Ready to secure your peace of mind? Fill out the form
+                                and we'll be in touch.</p>
+                            <div class="space-y-6">
+                                <div class="flex items-center gap-5">
+                                    <div class="w-12 h-12 rounded-full bg-white/20 flex items-center justify-center">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22"
+                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                            stroke-linecap="round" stroke-linejoin="round">
+                                            <path
+                                                d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+                                        </svg>
+                                    </div>
+                                    <span class="text-brand-dark">Schedule a Call</span>
+                                </div>
+                            </div>
+                            <div class="space-y-6 pt-10">
+                                <div class="flex items-center gap-5 group cursor-pointer">
+                                    <div
+                                        class="w-12 h-12 rounded-full bg-white/20 flex items-center justify-center group-hover:bg-white/30 transition-colors">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none"
+                                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                            <rect width="20" height="16" x="2" y="4" rx="2" />
+                                            <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+                                        </svg>
+                                    </div>
+                                    <span class="text-lg text-black/90">hello@auntiedoula.com</span>
+                                </div>
+                            </div>
+                        </div>
+                        <form id="inquiry-form" class="p-10 md:p-20 space-y-6">
+                            <input required type="text"
+                                class="w-full bg-brand-cream border-transparent rounded-2xl p-4 outline-none focus:ring-2 focus:ring-brand-pink/30"
+                                placeholder="Full Name">
+                            <input required type="email"
+                                class="w-full bg-brand-cream border-transparent rounded-2xl p-4 outline-none focus:ring-2 focus:ring-brand-pink/30"
+                                placeholder="Email Address">
+                            <select class="w-full bg-brand-cream border-transparent rounded-2xl p-4 outline-none">
+                                <option>Overnight Care</option>
+                                <option>Daytime Care</option>
+                                <option>Combined Support</option>
+                            </select>
+                            <textarea rows="4"
+                                class="w-full bg-brand-cream border-transparent rounded-2xl p-4 outline-none focus:ring-2 focus:ring-brand-pink/30"
+                                placeholder="Your Message"></textarea>
+                            <button type="submit"
+                                class="w-full py-5 bg-brand-pink text-white rounded-2xl font-bold text-lg hover:shadow-xl transition-all active:scale-[0.98]">Send
+                                Inquiry</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- TEAM PAGE CONTENT -->
+    <main id="team-content" class="page-hidden pt-32 pb-24 px-4 bg-brand-cream min-h-screen">
         <div class="max-w-7xl mx-auto">
             <div class="text-center mb-16 reveal">
-                <h2 class="text-3xl md:text-4xl font-serif text-brand-dark mb-4">Investment</h2>
-                <p class="text-[#6D6D6D]">Transparent pricing for your peace of mind</p>
+                <h1 class="text-5xl md:text-7xl font-serif text-brand-dark mb-6">Our Heart & <span
+                        class="italic text-[#B88686]">Mission.</span></h1>
             </div>
 
-            <div class="grid md:grid-cols-3 gap-8">
-                <!-- Hourly Card -->
-                <div class="bg-white p-8 rounded-3xl shadow-sm border border-brand-pink/20 flex flex-col reveal">
-                    <div class="mb-6">
-                        <h3 class="text-xl font-serif mb-2">Hourly Rates</h3>
-                        <p class="text-sm text-gray-500 italic">For flexible support needs</p>
-                    </div>
-                    <div class="space-y-4 flex-grow">
-                        <div class="flex justify-between items-center py-4 border-b border-gray-50">
-                            <span class="text-gray-600">Single Baby</span>
-                            <span class="text-2xl font-bold text-brand-dark">$45<span
-                                    class="text-sm font-normal text-gray-400">/hr</span></span>
-                        </div>
-                        <div class="flex justify-between items-center py-4">
-                            <span class="text-gray-600">Twins</span>
-                            <span class="text-2xl font-bold text-brand-dark">$55<span
-                                    class="text-sm font-normal text-gray-400">/hr</span></span>
-                        </div>
-                    </div>
-                    <a href="#contact"
-                        class="mt-8 w-full py-4 rounded-full border border-brand-pink text-[#B88686] font-bold hover:bg-brand-pink hover:text-white transition-all text-center">Inquire
-                        Now</a>
+            <!-- Mission & Vision (Moved to Top) -->
+            <div class="grid md:grid-cols-2 gap-12 items-center mb-32">
+                <div class="bg-brand-pink p-12 rounded-[3rem] text-brand-dark reveal-left">
+                    <h2 class="text-3xl font-serif mb-6">Our Mission</h2>
+                    <p class="text-lg leading-relaxed opacity-90">To provide compassionate, evidence-based postpartum
+                        care that protects the maternal-infant bond and ensures every family enters the fourth trimester
+                        feeling rested, supported, and confident.</p>
                 </div>
-
-                <!-- Package 1 -->
-                <div class="bg-white p-8 rounded-3xl shadow-sm border border-brand-pink/20 reveal">
-                    <div class="mb-6">
-                        <h3 class="text-xl font-serif mb-2">3 Nights / Week</h3>
-                        <p class="text-sm italic text-gray-500">Weekly package rate</p>
-                    </div>
-                    <div class="space-y-4 mb-8">
-                        <div class="flex justify-between items-center py-4 border-b border-gray-50">
-                            <span>Single Baby</span>
-                            <span class="text-2xl font-bold text-brand-dark">$1,350</span>
-                        </div>
-                        <div class="flex justify-between items-center py-4">
-                            <span>Twins</span>
-                            <span class="text-2xl font-bold text-brand-dark">$1,815</span>
-                        </div>
-                    </div>
-                    <a href="#contact"
-                        class="block w-full py-4 rounded-full font-bold text-center bg-brand-pink/10 text-[#B88686] border border-brand-pink/20 hover:bg-brand-pink hover:text-white transition-all">Select
-                        Package</a>
+                <div class="bg-white p-12 rounded-[3rem] border border-brand-pink/20 reveal-right">
+                    <h2 class="text-3xl font-serif mb-6 text-brand-dark">Our Vision</h2>
+                    <p class="text-lg text-gray-600 leading-relaxed">A world where the transition into parenthood is
+                        celebrated with communal support, where rest is prioritized as a medical necessity, and where no
+                        mother feels she must walk the journey of early recovery alone.</p>
                 </div>
+            </div>
 
-                <!-- Package 2 - Featured -->
+            <!-- Team Header -->
+            <div class="text-center mb-16 reveal">
+                <h2 class="text-4xl font-serif text-brand-dark mb-4">Meet Your Support Circle</h2>
+                <p class="text-xl text-gray-600 max-w-2xl mx-auto">Experienced doulas committed to nurturing you and
+                    your baby during this delicate transition.</p>
+            </div>
+
+            <!-- Team Members -->
+            <div class="grid md:grid-cols-3 gap-10 mb-20">
+                <!-- Sarah -->
                 <div
-                    class="p-8 rounded-[2rem] shadow-xl border bg-brand-pink text-white border-transparent reveal scale-105">
-                    <div class="flex justify-between items-start mb-6">
-                        <div>
-                            <h3 class="text-xl font-serif mb-2">4 Nights / Week</h3>
-                            <p class="text-sm italic text-white/80">Weekly package rate</p>
-                        </div>
-                        <span class="bg-white/20 text-[10px] uppercase tracking-widest px-2 py-1 rounded font-bold">Most
-                            Popular</span>
+                    class="bg-white rounded-3xl overflow-hidden shadow-sm border border-brand-pink/10 transition-transform hover:-translate-y-2">
+                    <div class="h-80 bg-[#F5E6E6] relative overflow-hidden">
+                        <img src="Image/jazzy.png"
+                            alt="Sarah" class="absolute inset-0 w-full h-full object-cover">
                     </div>
-                    <div class="space-y-4 mb-8">
-                        <div class="flex justify-between items-center py-4 border-b border-white/20">
-                            <span>Single Baby</span>
-                            <span class="text-3xl font-bold">$1,760</span>
-                        </div>
-                        <div class="flex justify-between items-center py-4">
-                            <span>Twins</span>
-                            <span class="text-3xl font-bold">$2,376</span>
-                        </div>
+                    <div class="p-8">
+                        <h3 class="text-2xl font-serif text-brand-dark mb-1">Jasmyne Tomlin</h3>
+                        <p class="text-brand-pink font-semibold text-sm uppercase tracking-widest mb-4">Founder & Lead
+                            Doula</p>
+                        <p class="text-gray-600 leading-relaxed italic">"With over 12 years of experience in newborn
+                            care and a background in nursing, I founded Auntie Doula to provide the village every mother
+                            deserves."</p>
                     </div>
-                    <a href="#contact"
-                        class="block w-full py-4 rounded-full font-bold text-center bg-white text-brand-pink hover:bg-brand-cream hover:shadow-lg transition-all">Select
-                        Package</a>
                 </div>
-            </div>
-        </div>
-    </section>
 
-    <!-- Contact Section -->
-    <section id="contact" class="py-24 px-4 bg-brand-cream">
-        <div class="max-w-7xl mx-auto reveal">
-            <div class="bg-white rounded-[3.5rem] shadow-2xl overflow-hidden border border-brand-pink/10">
-                <div class="grid md:grid-cols-2">
-                    <div class="p-10 md:p-20 bg-brand-pink text-white space-y-10 relative overflow-hidden">
-                        <div class="absolute -bottom-20 -left-20 w-64 h-64 bg-white/10 rounded-full blur-2xl"></div>
-                        <h2 class="text-4xl md:text-5xl font-serif text-black/90">Inquire about <br>your care</h2>
-                        <p class="text-lg text-black/90 max-w-sm">
-                            Ready to secure your nights? Fill out the form and we'll be in touch to discuss your specific
-                            needs.
-                        </p>
-    
-                        <div class="space-y-6 pt-10">
-                            <div class="flex items-center gap-5 group cursor-pointer">
-                                <div
-                                    class="w-12 h-12 rounded-full bg-white/20 flex items-center justify-center group-hover:bg-white/30 transition-colors">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24"
-                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                        stroke-linejoin="round">
-                                        <rect width="20" height="16" x="2" y="4" rx="2" />
-                                        <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
-                                    </svg>
-                                </div>
-                                <span class="text-lg text-black/90">hello@auntiedoula.com</span>
-                            </div>
-                            <div class="flex items-center gap-5 group cursor-pointer">
-                                <div
-                                    class="w-12 h-12 rounded-full bg-white/20 flex items-center justify-center group-hover:bg-white/30 transition-colors">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24"
-                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                        stroke-linejoin="round">
-                                        <path
-                                            d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z" />
-                                    </svg>
-                                </div>
-                                <span class="text-lg text-black/90 ">Serving the Greater Area</span>
-                            </div>
-                        </div>
+                <!-- Maya -->
+                <div
+                    class="bg-white rounded-3xl overflow-hidden shadow-sm border border-brand-pink/10 transition-transform hover:-translate-y-2">
+                    <div class="h-80 bg-[#F5E6E6] relative overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1531123897727-8f129e1688ce?auto=format&fit=crop&q=80&w=600"
+                            alt="Maya" class="absolute inset-0 w-full h-full object-cover">
                     </div>
-    
-                    <form id="inquiry-form" class="p-10 md:p-20 space-y-6">
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                            <div class="space-y-2">
-                                <label class="text-xs font-bold uppercase tracking-widest text-gray-400">Full Name</label>
-                                <input required type="text"
-                                    class="w-full bg-brand-cream border-transparent rounded-2xl p-4 focus:bg-white focus:ring-2 focus:ring-brand-pink/30 outline-none transition-all"
-                                    placeholder="Jane Doe">
-                            </div>
-                            <div class="space-y-2">
-                                <label class="text-xs font-bold uppercase tracking-widest text-gray-400">Email
-                                    Address</label>
-                                <input required type="email"
-                                    class="w-full bg-brand-cream border-transparent rounded-2xl p-4 focus:bg-white focus:ring-2 focus:ring-brand-pink/30 outline-none transition-all"
-                                    placeholder="jane@email.com">
-                            </div>
-                        </div>
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                            <div class="space-y-2">
-                                <label class="text-xs font-bold uppercase tracking-widest text-gray-400">Est. Due
-                                    Date</label>
-                                <input required type="date"
-                                    class="w-full bg-brand-cream border-transparent rounded-2xl p-4 focus:bg-white focus:ring-2 focus:ring-brand-pink/30 outline-none transition-all">
-                            </div>
-                            <div class="space-y-2">
-                                <label class="text-xs font-bold uppercase tracking-widest text-gray-400">Type of
-                                    Care</label>
-                                <select
-                                    class="w-full bg-brand-cream border-transparent rounded-2xl p-4 focus:bg-white focus:ring-2 focus:ring-brand-pink/30 outline-none transition-all appearance-none">
-                                    <option>Single Baby</option>
-                                    <option>Twins</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="space-y-2">
-                            <label class="text-xs font-bold uppercase tracking-widest text-gray-400">Your Message</label>
-                            <textarea rows="4"
-                                class="w-full bg-brand-cream border-transparent rounded-2xl p-4 focus:bg-white focus:ring-2 focus:ring-brand-pink/30 outline-none transition-all"
-                                placeholder="Tell us about your needs..."></textarea>
-                        </div>
-                        <button type="submit"
-                            class="w-full py-5 bg-brand-pink text-white rounded-2xl font-bold text-lg hover:shadow-xl transition-all active:scale-[0.98] mt-4">
-                            Send Inquiry
-                        </button>
-                    </form>
+                    <div class="p-8">
+                        <h3 class="text-2xl font-serif text-brand-dark mb-1">Maya Chen</h3>
+                        <p class="text-brand-pink font-semibold text-sm uppercase tracking-widest mb-4">Postpartum
+                            Specialist</p>
+                        <p class="text-gray-600 leading-relaxed italic">"My passion lies in breastfeeding support and
+                            helping parents establish gentle sleep patterns. I believe in care that empowers the whole
+                            family."</p>
+                    </div>
+                </div>
+
+                <!-- Elena -->
+                <div
+                    class="bg-white rounded-3xl overflow-hidden shadow-sm border border-brand-pink/10 transition-transform hover:-translate-y-2">
+                    <div class="h-80 bg-[#F5E6E6] relative overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1567532939604-b6b5b0db2604?auto=format&fit=crop&q=80&w=600"
+                            alt="Elena" class="absolute inset-0 w-full h-full object-cover">
+                    </div>
+                    <div class="p-8">
+                        <h3 class="text-2xl font-serif text-brand-dark mb-1">Elena Rodriguez</h3>
+                        <p class="text-brand-pink font-semibold text-sm uppercase tracking-widest mb-4">Newborn Care
+                            Specialist</p>
+                        <p class="text-gray-600 leading-relaxed italic">"Specializing in twin care, I bring a calm
+                            presence to the nighttime routine, ensuring that even the most chaotic evenings end in
+                            peaceful rest."</p>
+                    </div>
                 </div>
             </div>
+
+            <div class="text-center mt-20">
+                <button onclick="showPage('main')"
+                    class="text-brand-pink font-bold border-b-2 border-brand-pink pb-1 hover:text-brand-dark transition-colors">←
+                    Back to Main</button>
+            </div>
         </div>
-    </section>
+    </main>
 
     <!-- Footer -->
     <footer class="py-16 bg-white border-t border-brand-pink/10">
         <div class="max-w-7xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-10">
             <div class="flex items-center gap-3">
-                <img src="Image/Logo.png" alt="Auntie Doula Logo" class="h-20 w-auto"
-                    onerror="this.style.display='none'">
                 <span class="text-2xl font-serif font-medium text-brand-dark tracking-tight">Auntie Doula</span>
             </div>
             <p class="text-gray-400 text-sm">© 2024 Auntie Doula. Professional Postpartum Services.</p>
@@ -573,40 +558,90 @@
         const mobileMenu = document.getElementById('mobile-menu');
         const menuIcon = document.getElementById('menu-icon');
         const closeIcon = document.getElementById('close-icon');
-        const mobileLinks = document.querySelectorAll('.mobile-link');
         const inquiryForm = document.getElementById('inquiry-form');
         const loader = document.getElementById('loader');
+
+        // Navigation logic for "Page" behavior
+        function showPage(pageId) {
+            const main = document.getElementById('main-content');
+            const team = document.getElementById('team-content');
+
+            if (pageId === 'team') {
+                main.classList.add('page-hidden');
+                team.classList.remove('page-hidden');
+                window.scrollTo(0, 0);
+                triggerAnimations();
+            } else {
+                main.classList.remove('page-hidden');
+                team.classList.add('page-hidden');
+                window.scrollTo(0, 0);
+                triggerAnimations();
+            }
+        }
+
+        function closeMobileMenu() {
+            mobileMenu.classList.remove('open');
+            menuIcon.classList.remove('hidden');
+            closeIcon.classList.add('hidden');
+            document.body.classList.remove('overflow-hidden');
+        }
+
+        // Pricing Logic (Adjusted to 10% off for Daytime)
+        const rates = {
+            night: { hrS: 45, hrT: 55, p1S: 1350, p1T: 1815, p2S: 1760, p2T: 2376 },
+            day: { hrS: 40.50, hrT: 49.50, p1S: 1215, p1T: 1633.50, p2S: 1584, p2T: 2138.40 }
+        };
+
+        function togglePricing(mode) {
+            const nightBtn = document.getElementById('night-btn');
+            const dayBtn = document.getElementById('day-btn');
+
+            if (mode === 'night') {
+                nightBtn.classList.add('bg-brand-pink', 'text-white');
+                nightBtn.classList.remove('text-gray-400');
+                dayBtn.classList.remove('bg-brand-pink', 'text-white');
+                dayBtn.classList.add('text-gray-400');
+                updatePriceDisplay('night');
+            } else {
+                dayBtn.classList.add('bg-brand-pink', 'text-white');
+                dayBtn.classList.remove('text-gray-400');
+                nightBtn.classList.remove('bg-brand-pink', 'text-white');
+                nightBtn.classList.add('text-gray-400');
+                updatePriceDisplay('day');
+            }
+        }
+
+        function updatePriceDisplay(mode) {
+            const r = rates[mode];
+            document.getElementById('price-single-hr').innerHTML = `$${r.hrS}<span class="text-sm font-normal text-gray-400">/hr</span>`;
+            document.getElementById('price-twins-hr').innerHTML = `$${r.hrT}<span class="text-sm font-normal text-gray-400">/hr</span>`;
+            document.getElementById('price-single-p1').innerText = `$${r.p1S.toLocaleString()}`;
+            document.getElementById('price-twins-p1').innerText = `$${r.p1T.toLocaleString()}`;
+            document.getElementById('price-single-p2').innerText = `$${r.p2S.toLocaleString()}`;
+            document.getElementById('price-twins-p2').innerText = `$${r.p2T.toLocaleString()}`;
+        }
+
+        // Standard Scroll Animations
+        function triggerAnimations() {
+            const reveals = document.querySelectorAll('.reveal, .reveal-left, .reveal-right');
+            reveals.forEach(r => {
+                const rect = r.getBoundingClientRect();
+                if (rect.top < window.innerHeight - 50) {
+                    r.classList.add('active');
+                }
+            });
+        }
 
         window.addEventListener('load', () => {
             setTimeout(() => {
                 loader.style.opacity = '0';
                 loader.style.visibility = 'hidden';
                 document.body.style.overflow = 'auto';
+                triggerAnimations();
             }, 800);
         });
 
-        const revealCallback = (entries, observer) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('active');
-                    if (entry.target.id === 'inclusions-list') {
-                        const items = entry.target.querySelectorAll('.inclusion-item');
-                        items.forEach((item, i) => {
-                            setTimeout(() => item.classList.add('active'), i * 150);
-                        });
-                    }
-                }
-            });
-        };
-
-        const revealObserver = new IntersectionObserver(revealCallback, {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        });
-
-        document.querySelectorAll('.reveal, .reveal-left, .reveal-right, #inclusions-list').forEach(el => {
-            revealObserver.observe(el);
-        });
+        window.addEventListener('scroll', triggerAnimations);
 
         menuToggle.addEventListener('click', () => {
             const isOpen = mobileMenu.classList.toggle('open');
@@ -615,30 +650,13 @@
             document.body.classList.toggle('overflow-hidden', isOpen);
         });
 
-        mobileLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                mobileMenu.classList.remove('open');
-                menuIcon.classList.remove('hidden');
-                closeIcon.classList.add('hidden');
-                document.body.classList.remove('overflow-hidden');
-            });
-        });
-
         inquiryForm.addEventListener('submit', (e) => {
             e.preventDefault();
-            const submitBtn = inquiryForm.querySelector('button');
-            submitBtn.innerText = "Processing...";
-            submitBtn.disabled = true;
-
+            const btn = inquiryForm.querySelector('button');
+            btn.innerText = "Sending...";
             setTimeout(() => {
-                submitBtn.innerText = "Inquiry Sent!";
-                submitBtn.classList.replace('bg-brand-pink', 'bg-green-500');
+                btn.innerText = "Sent Successfully!";
                 inquiryForm.reset();
-                setTimeout(() => {
-                    submitBtn.innerText = "Send Inquiry";
-                    submitBtn.disabled = false;
-                    submitBtn.classList.replace('bg-green-500', 'bg-brand-pink');
-                }, 3000);
             }, 1500);
         });
     </script>
